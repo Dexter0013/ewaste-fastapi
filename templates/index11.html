@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Collection & Classification System</title>
+    <link rel="stylesheet" href="{{ request.url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation and sections as in your previous template -->
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upload E-Waste for Classification</h2>
+                <p>Drop your images or videos below for AI-powered identification</p>
+            </div>
+            <div class="upload-container">
+                <form id="upload-form" method="POST" enctype="multipart/form-data" action="#">
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <h3>Drag & Drop Your Image or Video Here</h3>
+                            <p>Or click to browse files</p>
+                            <div class="supported-formats">
+                                <span class="format-tag">JPG</span>
+                                <span class="format-tag">PNG</span>
+                                <span class="format-tag">MP4</span>
+                                <span class="format-tag">WEBM</span>
+                            </div>
+                        </div>
+                        <input type="file" id="file-input" name="file" accept=".jpg,.jpeg,.png,.mp4,.webm">
+                    </div>
+                    <div class="upload-actions">
+                        <button type="submit" class="btn btn--primary" id="process-btn" disabled>
+                            <i class="fas fa-cog"></i>
+                            Process File
+                        </button>
+                        <button type="button" class="btn btn--secondary" id="clear-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- ...other sections as needed... -->
+    <script src="{{ request.url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
