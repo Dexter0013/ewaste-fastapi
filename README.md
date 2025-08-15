@@ -74,8 +74,8 @@ curl -F "file=@your-image.jpg" http://localhost:8000/predict --output detected.j
 ewaste-fastapi/
 │
 ├── main.py           # API app & endpoints
-├── utils.py          # Model & image helpers
-├── yolov8.pt         # YOLO weights
+├── Model/best.pt     # Model & image helpers
+├── Static            # Website template
 ├── requirements.txt
 └── README.md
 ```
