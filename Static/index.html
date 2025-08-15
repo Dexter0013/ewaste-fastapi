@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Collection & Classification System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-recycle"></i>
+                <span>E-Waste Classifier</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#upload" class="nav-link">Upload</a>
+                <a href="#about" class="nav-link">About E-Waste</a>
+                <a href="#results" class="nav-link">Results</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>E-Waste Recognition & Classification System</h1>
+                <p>AI-powered electronic waste identification using YOLOv8 object detection. Upload your e-waste images for instant classification and proper recycling guidance.</p>
+                <div class="hero-actions">
+                    <button class="btn btn--primary btn--lg" onclick="scrollToSection('upload')">
+                        <i class="fas fa-upload"></i>
+                        Start Classification
+                    </button>
+                    <button class="btn btn--outline btn--lg" onclick="scrollToSection('about')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="1200000">0</div>
+                    <div class="stat-label">Devices Classified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="850">0</div>
+                    <div class="stat-label">Tons Processed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="92">0</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upload E-Waste for Classification</h2>
+                <p>Drop your images below for AI-powered identification</p>
+            </div>
+
+            <div class="upload-container">
+                <form id="upload-form">
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <h3>Drag & Drop Your Image or Video Here</h3>
+                            <p>Or click to browse files</p>
+                            <div class="supported-formats">
+                                <span class="format-tag">JPG</span>
+                                <span class="format-tag">PNG</span>
+                                <span class="format-tag">MP4</span>
+                                <span class="format-tag">WEBM</span>
+                            </div>
+                        </div>
+                        <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.mp4,.webm">
+                    </div>
+
+                    <div class="upload-actions">
+                        <button type="submit" class="btn btn--primary" id="process-btn" disabled>
+                            <i class="fas fa-cog"></i>
+                            Process Image
+                        </button>
+                        <button type="button" class="btn btn--secondary" id="clear-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Classification Results</h2>
+                <p>Detected e-waste items with recycling recommendations</p>
+            </div>
+
+            <div class="results-container" id="results-container">
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <p>No results yet. Upload an image to get started!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About E-Waste Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Understanding E-Waste</h2>
+                <p>Learn about electronic waste and its environmental impact</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card__body">
+                        <div class="about-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Global Impact</h3>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <strong>57.4M</strong>
+                                <span>Metric tonnes generated annually</span>
+                            </div>
+                            <div class="impact-stat">
+                                <strong>20%</strong>
+                                <span>Properly recycled globally</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="card__body">
+                        <div class="about-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>Economic Value</h3>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <strong>$62.5B</strong>
+                                <span>Worth of materials discarded yearly</span>
+                            </div>
+                            <div class="impact-stat">
+                                <strong>21%</strong>
+                                <span>Annual growth rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="categories-grid" id="categories-grid">
+                <h3>E-Waste Categories We Detect</h3>
+                <div class="categories-container">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="recycling-process">
+                <h3>Recycling Process</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Collection</h4>
+                        <p>E-waste is collected from drop-off points and transported to recycling facilities.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Sorting</h4>
+                        <p>Manual and automated sorting separates different types of electronic devices.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Extraction</h4>
+                        <p>Valuable materials like metals and rare earth elements are extracted.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Cleaning</h4>
+                        <p>Materials are cleaned and purified for reuse.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h4>Remanufacturing</h4>
+                        <p>Recovered materials are used to create new products.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
