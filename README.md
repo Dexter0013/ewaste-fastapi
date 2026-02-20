@@ -4,7 +4,7 @@
 > **Upload** photos of devices and get instant detection—with bounding boxes!
 
 ***
-
+Streamlit App Link(Without FastAPI):https://ewaste-fastapi-mre8zdpysgevmnnvhregdu.streamlit.app/
 ## 🚀 Features
 
 - ⚡ **FastAPI Backend:** Blazing-fast, modern API.
