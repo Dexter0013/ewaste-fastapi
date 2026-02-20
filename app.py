@@ -79,7 +79,7 @@ model = load_yolo()
 
 # --- SIDEBAR ---
 st.sidebar.header("🛠️ Settings")
-app_mode = st.sidebar.selectbox("Choose Input Mode", ["Image Upload", "Video Upload", "Live WebRTC Stream"])
+app_mode = st.sidebar.selectbox("Choose Input Mode", ["Image Upload", "Live WebRTC Stream"])
 conf_threshold = st.sidebar.slider("AI Confidence", 0.0, 1.0, 0.45)
 
 st.title("♻️ Smart E-Waste Analytics Dashboard")
