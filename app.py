@@ -11,7 +11,7 @@ st.set_page_config(page_title="E-Waste AI Detector", layout="wide")
 @st.cache_resource
 def load_yolo_model():
     # Update 'best.pt' to the path of your trained weights file
-    model = YOLO("models/best.pt") 
+    model = YOLO("Models/best.pt") 
     return model
 
 try:
