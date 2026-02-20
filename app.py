@@ -126,62 +126,62 @@ if app_mode == "Image Upload":
         
         display_recommendations(results)
 
-# --- MODE 2: VIDEO UPLOAD WITH LIVE RECOMMENDATIONS ---
-elif app_mode == "Video Upload":
-    video_file = st.file_uploader("Upload e-waste video", type=['mp4', 'mov', 'avi'])
+# # --- MODE 2: VIDEO UPLOAD WITH LIVE RECOMMENDATIONS ---
+# elif app_mode == "Video Upload":
+#     video_file = st.file_uploader("Upload e-waste video", type=['mp4', 'mov', 'avi'])
     
-    if video_file:
-        # Save video to temp file
-        tfile = tempfile.NamedTemporaryFile(delete=False)
-        tfile.write(video_file.read())
-        vf = cv2.VideoCapture(tfile.name)
+#     if video_file:
+#         # Save video to temp file
+#         tfile = tempfile.NamedTemporaryFile(delete=False)
+#         tfile.write(video_file.read())
+#         vf = cv2.VideoCapture(tfile.name)
         
-        # UI Placeholders
-        st_frame = st.empty()
-        st_results_header = st.empty()
-        st_recommendation_area = st.empty()
+#         # UI Placeholders
+#         st_frame = st.empty()
+#         st_results_header = st.empty()
+#         st_recommendation_area = st.empty()
         
-        # Track unique items found in the video
-        items_detected_in_video = set()
+#         # Track unique items found in the video
+#         items_detected_in_video = set()
 
-        while vf.isOpened():
-            ret, frame = vf.read()
-            if not ret:
-                break
+#         while vf.isOpened():
+#             ret, frame = vf.read()
+#             if not ret:
+#                 break
             
-            # 1. Run Detection
-            results = model.predict(frame, conf=conf_threshold, verbose=False)
+#             # 1. Run Detection
+#             results = model.predict(frame, conf=conf_threshold, verbose=False)
             
-            # 2. Update Detection Inventory
-            current_frame_classes = [model.names[int(box.cls)] for box in results[0].boxes]
-            for cls in current_frame_classes:
-                items_detected_in_video.add(cls)
+#             # 2. Update Detection Inventory
+#             current_frame_classes = [model.names[int(box.cls)] for box in results[0].boxes]
+#             for cls in current_frame_classes:
+#                 items_detected_in_video.add(cls)
 
-            # 3. Display Processed Frame
-            st_frame.image(results[0].plot(), channels="BGR", use_container_width=True)
+#             # 3. Display Processed Frame
+#             st_frame.image(results[0].plot(), channels="BGR", use_container_width=True)
 
-            # 4. Update Recommendations Section Dynamically
-            if items_detected_in_video:
-                with st_recommendation_area.container():
-                    st.markdown("---")
-                    st.subheader("📋 Items Identified in Video")
+#             # 4. Update Recommendations Section Dynamically
+#             if items_detected_in_video:
+#                 with st_recommendation_area.container():
+#                     st.markdown("---")
+#                     st.subheader("📋 Items Identified in Video")
                     
-                    # Create a grid of cards for detected items
-                    cols = st.columns(min(len(items_detected_in_video), 3))
-                    for i, cls in enumerate(list(items_detected_in_video)):
-                        info = E_WASTE_INFO.get(cls, {"impact": "E-Waste", "rec": "Check guidelines.", "link": "#", "label": "Link", "color": "#ccc"})
+#                     # Create a grid of cards for detected items
+#                     cols = st.columns(min(len(items_detected_in_video), 3))
+#                     for i, cls in enumerate(list(items_detected_in_video)):
+#                         info = E_WASTE_INFO.get(cls, {"impact": "E-Waste", "rec": "Check guidelines.", "link": "#", "label": "Link", "color": "#ccc"})
                         
-                        with cols[i % 3]:
-                            st.markdown(f"""
-                                <div style="background-color: #f1f3f6; padding:10px; border-radius:8px; border-left: 5px solid {info['color']}; margin-bottom: 10px;">
-                                    <strong style="color: black;">{cls.capitalize()}</strong><br>
-                                    <span style="font-size: 0.8em; color: #555;">{info['rec'][:60]}...</span>
-                                </div>
-                            """, unsafe_allow_html=True)
-                            st.link_button(f"Recycle {cls}", info['link'], use_container_width=True)
+#                         with cols[i % 3]:
+#                             st.markdown(f"""
+#                                 <div style="background-color: #f1f3f6; padding:10px; border-radius:8px; border-left: 5px solid {info['color']}; margin-bottom: 10px;">
+#                                     <strong style="color: black;">{cls.capitalize()}</strong><br>
+#                                     <span style="font-size: 0.8em; color: #555;">{info['rec'][:60]}...</span>
+#                                 </div>
+#                             """, unsafe_allow_html=True)
+#                             st.link_button(f"Recycle {cls}", info['link'], use_container_width=True)
 
-        vf.release()
-        st.success("✅ Video Analysis Complete!")
+#         vf.release()
+#         st.success("✅ Video Analysis Complete!")
 
 elif app_mode == "Live WebRTC Stream":
     st.subheader("🔴 Live AI Scanner")
