@@ -73,7 +73,7 @@ E_WASTE_INFO = {
 @st.cache_resource
 def load_yolo():
     # Path to your Model/best.pt
-    return YOLO("Model/best.pt")
+    return YOLO("Model/best (3).pt")
 
 model = load_yolo()
 
