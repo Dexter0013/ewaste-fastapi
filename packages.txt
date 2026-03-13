@@ -1,3 +1,2 @@
 libglib2.0-0
 libgl1
-freeglut3-dev
